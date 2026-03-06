@@ -1,0 +1,7 @@
+node_modules/
+eng.traineddata
+eng.traineddata.gz
+eng.traineddata.bz2
+eng.traineddata.lstm
+eng.traineddata.tesseract
+eng.traineddata.tesseract.lstm  
