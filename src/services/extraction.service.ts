@@ -1,6 +1,6 @@
 import Tesseract from 'tesseract.js';
 import { PDFParse } from 'pdf-parse';
-import { intervalToDuration, formatDuration } from 'date-fns';
+import { intervalToDuration, formatDuration, isAfter } from 'date-fns';
 /**
  * SERVICE: Extraction & Processing Details
  * Handles the logic for OCR (images) and text extraction (PDFs).
@@ -14,6 +14,14 @@ import { intervalToDuration, formatDuration } from 'date-fns';
 export const calculateAgeData = (dob: string) => {
     const birthDate = new Date(dob);
     const today = new Date();
+    
+    // Prevent future dates
+    if (isAfter(birthDate, today)) {
+        return {
+            years: 0,
+            friendlyAge: "0 days"
+        };
+    }
     const duration = intervalToDuration({ start: birthDate, end: today });
 
     return {
